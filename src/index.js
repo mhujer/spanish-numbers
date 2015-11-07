@@ -32,6 +32,7 @@ export class SpanishConvertor {
                 return this.convert(decimal) + ' ' + this.convert(misc);
             }
         }
+        throw new Error(`Number "${number}" is too big!`);
     }
 }
 

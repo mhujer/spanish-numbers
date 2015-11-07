@@ -7,6 +7,11 @@ describe('spanish-numbers', () => {
             Convertor.convert('foo');
         }, /Invalid number "foo"/);
     });
+    it('fails for big numbers', () => {
+        assert.throws(() => {
+            Convertor.convert(1001);
+        }, /Number "1001" is too big!/);
+    });
 
     let expected = new Map([
         [1, 'uno'],
