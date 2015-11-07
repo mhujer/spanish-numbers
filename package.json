@@ -1,6 +1,6 @@
 {
   "name": "spanish-numbers",
-  "version": "0.1.2",
+  "version": "0.0.1",
   "description": "This package provides convertor of Spanish numbers from digits to words",
   "main": "./lib/index.js",
   "jsnext:main": "./src/index.js",
