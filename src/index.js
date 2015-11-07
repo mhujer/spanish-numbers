@@ -1,3 +1,5 @@
+import {roundToBase} from './round';
+
 export class SpanishConvertor {
     static convert(number) {
         if (!Number.isInteger(number)) {
@@ -17,9 +19,18 @@ export class SpanishConvertor {
             return 'veinti' + this.convert(number - 20);
         }
         if (number > 30 && number < 100) {
-            let decimal = Math.floor(number / 10) * 10;
-            let misc = number % 10;
+            let decimal = roundToBase(number);
+            let misc = number % decimal;
             return this.convert(decimal) + ' y ' + this.convert(misc);
+        }
+        if (number > 100 && number <= 999) {
+            let decimal = roundToBase(number);
+            let misc = number % decimal;
+            if (number > 100 && number < 200) {
+                return 'ciento ' + this.convert(misc);
+            } else {
+                return this.convert(decimal) + ' ' + this.convert(misc);
+            }
         }
     }
 }
@@ -57,6 +68,15 @@ function getNumberMap() {
         [80, 'ochenta'],
         [90, 'noventa'],
         [100, 'cien'],
+        [200, 'doscientos'],
+        [300, 'trescientos'],
+        [400, 'cuatrocientos'],
+        [500, 'quinientos'],
+        [600, 'seiscientos'],
+        [700, 'setecientos'],
+        [800, 'ochocientos'],
+        [900, 'novecientos'],
+        [1000, 'mil'],
     ];
 
     return new Map(numbers);

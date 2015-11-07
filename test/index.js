@@ -6,3 +6,4 @@ require("babel/register")({
 
 // The tests, however, can and should be written with ECMAScript 2015.
 require("./tests.js");
+require("./round.js");
