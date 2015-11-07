@@ -13,6 +13,14 @@ export class SpanishConvertor {
         if (number >= 17 && number <= 19) {
             return 'dieci' + this.convert(number - 10);
         }
+        if (number >= 21 && number <= 29) {
+            return 'veinti' + this.convert(number - 20);
+        }
+        if (number > 30 && number < 100) {
+            let decimal = Math.floor(number / 10) * 10;
+            let misc = number % 10;
+            return this.convert(decimal) + ' y ' + this.convert(misc);
+        }
     }
 }
 
@@ -38,6 +46,17 @@ function getNumberMap() {
         [15, 'quince'],
         [16, 'dieciséis'], //has extra accent
         [20, 'veinte'],
+        [22, 'veintidós'], //accent
+        [23, 'veintitrés'], //accent
+        [26, 'veintiséis'], //accent
+        [30, 'treinta'],
+        [40, 'cuarenta'],
+        [50, 'cincuenta'],
+        [60, 'sesenta'],
+        [70, 'setenta'],
+        [80, 'ochenta'],
+        [90, 'noventa'],
+        [100, 'cien'],
     ];
 
     return new Map(numbers);
