@@ -9,6 +9,10 @@ export class SpanishConvertor {
         if (numberMap.has(number)) {
             return numberMap.get(number);
         }
+
+        if (number >= 17 && number <= 19) {
+            return 'dieci' + this.convert(number - 10);
+        }
     }
 }
 
@@ -27,6 +31,13 @@ function getNumberMap() {
         [8, 'ocho'],
         [9, 'nueve'],
         [10, 'diez'],
+        [11, 'once'],
+        [12, 'doce'],
+        [13, 'trece'],
+        [14, 'catorce'],
+        [15, 'quince'],
+        [16, 'dieciséis'], //has extra accent
+        [20, 'veinte'],
     ];
 
     return new Map(numbers);
