@@ -18,18 +18,15 @@ export class SpanishConvertor {
         if (number >= 21 && number <= 29) {
             return 'veinti' + this.convert(number - 20);
         }
-        if (number > 30 && number < 100) {
-            let decimal = roundToBase(number);
-            let misc = number % decimal;
-            return this.convert(decimal) + ' y ' + this.convert(misc);
-        }
-        if (number > 100 && number <= 999) {
-            let decimal = roundToBase(number);
-            let misc = number % decimal;
-            if (number > 100 && number < 200) {
-                return 'ciento ' + this.convert(misc);
+        if (number > 30 && number <= 999) {
+            let roundedDown = roundToBase(number);
+            let modulo = number % roundedDown;
+            if (number > 30 && number < 100) {
+                return this.convert(roundedDown) + ' y ' + this.convert(modulo);
+            } else if (number > 100 && number < 200) {
+                return 'ciento ' + this.convert(modulo);
             } else {
-                return this.convert(decimal) + ' ' + this.convert(misc);
+                return this.convert(roundedDown) + ' ' + this.convert(modulo);
             }
         }
         throw new Error(`Number "${number}" is too big!`);
