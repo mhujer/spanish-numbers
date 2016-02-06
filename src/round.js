@@ -6,7 +6,7 @@
  * @returns {number}
  */
 export function roundToBase(number) {
-    let pow = number.toString().length - 1;
-    let base = Math.pow(10, pow);
+    const pow = number.toString().length - 1;
+    const base = Math.pow(10, pow);
     return Math.floor(number / base) * base;
 }

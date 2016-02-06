@@ -1,10 +1,10 @@
-import {roundToBase} from './round';
+import { roundToBase } from './round';
 
 /**
  * @returns {Map}
  */
 function getNumberMap() {
-    let numbers = [
+    const numbers = [
         [1, 'uno'],
         [2, 'dos'],
         [3, 'tres'],
@@ -20,11 +20,11 @@ function getNumberMap() {
         [13, 'trece'],
         [14, 'catorce'],
         [15, 'quince'],
-        [16, 'dieciséis'], //has extra accent
+        [16, 'dieciséis'], // has extra accent
         [20, 'veinte'],
-        [22, 'veintidós'], //accent
-        [23, 'veintitrés'], //accent
-        [26, 'veintiséis'], //accent
+        [22, 'veintidós'], // accent
+        [23, 'veintitrés'], // accent
+        [26, 'veintiséis'], // accent
         [30, 'treinta'],
         [40, 'cuarenta'],
         [50, 'cincuenta'],
@@ -53,7 +53,7 @@ export class SpanishConvertor {
             throw new Error(`Invalid number "${number}"`);
         }
 
-        let numberMap = getNumberMap();
+        const numberMap = getNumberMap();
 
         if (numberMap.has(number)) {
             return numberMap.get(number);
@@ -66,15 +66,15 @@ export class SpanishConvertor {
             return 'veinti' + this.convert(number - 20);
         }
         if (number > 30 && number <= 999) {
-            let roundedDown = roundToBase(number);
-            let modulo = number % roundedDown;
+            const roundedDown = roundToBase(number);
+            const modulo = number % roundedDown;
             if (number > 30 && number < 100) {
                 return this.convert(roundedDown) + ' y ' + this.convert(modulo);
-            } else if (number > 100 && number < 200) {
-                return 'ciento ' + this.convert(modulo);
-            } else {
-                return this.convert(roundedDown) + ' ' + this.convert(modulo);
             }
+            if (number > 100 && number < 200) {
+                return 'ciento ' + this.convert(modulo);
+            }
+            return this.convert(roundedDown) + ' ' + this.convert(modulo);
         }
         throw new Error(`Number "${number}" is too big!`);
     }
